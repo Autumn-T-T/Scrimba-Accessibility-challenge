@@ -1,0 +1,104 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    /* FIX: Ensure high contrast for text (WCAG AA requires 4.5:1) */
+    color: #222222; 
+}
+
+body, .contact-input, .contact-textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-page {
+    min-height: 100vh;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-form-section {
+    display: flex;
+    width: 100%; /* FIX: Changed from fixed 800px for responsiveness */
+    max-width: 800px;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.contact-image {
+    /* FIX: Large images should not use transform for layout; 
+       Ensure this image has alt="" if it is decorative */
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.contact-form-heading {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.contact-form-heading span {
+    /* FIX: Contrast check #007000 on white background. 
+       Dark green is typically safe, but always verify ratio. */
+    color: #007000;
+}
+
+.contact-form-intro {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-input, .contact-textarea {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto 20px;
+    border-radius: 20px;
+    padding: 12px 20px; /* FIX: Increased tap target size for mobile */
+    font-size: 16px;
+    border: 2px solid #333333;
+}
+
+/* FIX: Placeholder text contrast. 
+   Default #aaaaaa is too light (2.3:1). Changed to #666666 (4.5:1). */
+.contact-input::placeholder, .contact-textarea::placeholder {
+    color: #666666;
+    opacity: 1;
+}
+
+.contact-submit-button {
+    background-color: #333333;
+    color: #ffffff; /* FIX: Added high contrast text for the button */
+    border: 2px solid #333333;
+    padding: 12px 24px;
+    border-radius: 40px;
+    margin: 10px auto;
+    display: block;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+/* FIX: Added clear focus states for keyboard users (WCAG 2.4.7) */
+.contact-input:focus, 
+.contact-textarea:focus, 
+.contact-submit-button:focus {
+    outline: 3px solid #005fcc;
+    outline-offset: 3px;
+}
+
+.contact-submit-button:hover {
+    background-color: #555555;
+    color: #ffffff;
+}
+
+/* 
+Challenge Findings:
+1. Low Color Contrast: The placeholder text (#aaaaaa) was too light.
+2. Missing Focus Indicators: Form fields and buttons needed visible outlines for keyboard users.
+3. Fixed Layout: Fixed pixel widths (800px) can cause horizontal scrolling on zoom.
+4. Small Tap Targets: Input padding was slightly small for mobile accessibility.
+5. Implicit Labels: Ensure your HTML uses <label> for each input, as placeholder text alone is not accessible.
+6. Image Orientation: Using CSS `transform: rotate` on a 900px image can break page flow for screen magnifiers.
+*/
